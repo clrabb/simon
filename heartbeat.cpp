@@ -49,7 +49,6 @@ heartbeat::off_beat()
     if ( this->time_off() >= this->mills_between_beats() )
     {
         this->turn_on();
-        tone( 7, 600 );
     }
 
     return;
@@ -61,7 +60,6 @@ heartbeat::on_beat()
     if ( this->time_on() >= this->beat_length_mills() )
     {
         this->turn_off();
-        noTone( 7 );
     }
 
     return;

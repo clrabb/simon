@@ -3,6 +3,7 @@
 #include "singleton_t.h"
 #include "simon_consts.h"
 #include <Wire.h>
+#include <Arduino.h>
 
 /* -------------------- BASE -------------------- */
 

@@ -8,4 +8,13 @@ static const int BTN_UPDATE_SP_DELAY = 20;      // Time beteween setpoint update
 static const int MAX_SETPOINT        = 1800;    // The highest temp the buttons will let you go
 static const int MIN_SETPOINT        = 0;       // The lowest temp the buttons will let you go
 
+/* ------------- HEARTBEAT -------------------- */
+static const short HEARTBEAT_PIN = 8;
+static const unsigned long HEARTBEAT_DURATION_OFF = 400;
+static const unsigned long HEARTBEAT_DURATION_ON  = 1000;
+
+/* ------------- LEDs --------------------------*/
+static const short NEOPIXEL_PIN  = 6;
+static const short NUM_NEOPIXELS = 2;
+
 #endif // SIMON_CONSTS_H
