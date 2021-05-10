@@ -5,7 +5,6 @@
 
 using namespace simon;
 
-
 void setup()
 {
     init_singletons();
@@ -15,7 +14,7 @@ void setup()
 
     delay( 5000 );
 
-    button b( 1 );
+    simon::button* b = new simon::button( 1 );
 }
 
 boolean first_time = true;

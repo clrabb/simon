@@ -28,6 +28,27 @@ namespace simon
     static const short GREEN_BUTTON_PIN    = 2;
     static const short BLUE_BUTTON_PIN     = 3;
     static const short YELLOW_BUTTON_PIN   = 4;
+
+    static const short RED_R_VALUE         = 70;
+    static const short RED_G_VALUE         = 0;
+    static const short RED_B_VALUE         = 0;
+
+    static const short BLUE_R_VALUE        = 0;
+    static const short BLUE_G_VALUE        = 0;
+    static const short BLUE_B_VALUE        = 70;
+
+    static const short GREEN_R_VALUE       = 0;
+    static const short GREEN_G_VALUE       = 70;
+    static const short GREEN_B_VALUE       = 0;
+
+    static const short YELLOW_R_VALUE      = 70;
+    static const short YELLOW_G_VALUE      = 70;
+    static const short YELLOW_B_VALUE      = 0;
+
+    
+    
+
+    
 }
 
 #endif // SIMON_CONSTS_H
