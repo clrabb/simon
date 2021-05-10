@@ -3,6 +3,8 @@
 #include "simon_consts.h"
 #include "button.h"
 
+using namespace simon;
+
 
 void setup()
 {

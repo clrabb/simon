@@ -1,5 +1,7 @@
 #include "logger.h"
 
+using namespace simon;
+
 void
 logger::print( const char* message )
 {

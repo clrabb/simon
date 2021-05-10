@@ -1,6 +1,7 @@
 #include "heartbeat.h"
 #include "simon_consts.h"
 
+using namespace simon;
 
 heartbeat::heartbeat( uint8_t led_pin, unsigned long mills_between_beats, unsigned long beat_length_mills )
     :

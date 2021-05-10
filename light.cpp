@@ -2,6 +2,8 @@
 #include "singleton_t.h"
 #include <Arduino.h>
 
+using namespace simon;
+
 void
 light::turn_on()
 {

@@ -3,8 +3,10 @@
 
 #include <Adafruit_NeoPixel.h>
 
-typedef Adafruit_NeoPixel neopixel;
-
+namespace simon
+{   
+    typedef Adafruit_NeoPixel neopixel;
+}
                                                    
 
 

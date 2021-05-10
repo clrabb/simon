@@ -5,6 +5,8 @@
 //#include <Wire.h>
 #include <Arduino.h>
 
+using namespace simon;
+
 /* -------------------- BASE -------------------- */
 
 void
