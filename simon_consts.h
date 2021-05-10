@@ -14,7 +14,17 @@ static const unsigned long HEARTBEAT_DURATION_OFF = 400;
 static const unsigned long HEARTBEAT_DURATION_ON  = 1000;
 
 /* ------------- LEDs --------------------------*/
-static const short NEOPIXEL_PIN  = 6;
-static const short NUM_NEOPIXELS = 2;
+static const short NEOPIXEL_PIN        = 6;
+static const short NUM_NEOPIXELS       = 4;
+
+static const short RED_NEOPIXEL_NUM    = 0;
+static const short GREEN_NEOPIXEL_NUM  = 1;
+static const short BLUE_NEOPIXEL_NUM   = 2;
+static const short YELLOW_NEOPIXEL_NUM = 3;
+
+static const short RED_BUTTON_PIN      = 1;
+static const short GREEN_BUTTON_PIN    = 2;
+static const short BLUE_BUTTON_PIN     = 3;
+static const short YELLOW_BUTTON_PIN   = 4;
 
 #endif // SIMON_CONSTS_H

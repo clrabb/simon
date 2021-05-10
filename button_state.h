@@ -9,7 +9,6 @@ class button_state
 protected:
     virtual void switch_to_pressed( button* btn );
     virtual void switch_to_unpressed( button* btn );
-    virtual void switch_to_latched( button* btn );
 
 public:
     button_state() {}
@@ -19,7 +18,6 @@ public:
     virtual void reset_state() {}
     virtual bool is_unpressed() = 0;
     virtual bool is_pressed()   = 0;
-    virtual bool is_latched()   = 0;
     void update( button* btn );
 
 private:
@@ -36,7 +34,6 @@ public:
     virtual void button_unpressed( button* btn );
     virtual bool is_unpressed() { return true;  }
     virtual bool is_pressed()   { return false; }
-    virtual bool is_latched()   { return false; }
 };
 
 class button_state_pressed: public button_state
@@ -47,10 +44,6 @@ private:
                  
     void            first_pressed_mills( unsigned long mills ) { m_first_pressed_mills = mills; }
     bool            is_first_pressed();
-    bool            should_latch();
-    bool            has_updated_setpoint() { return m_has_updated_setpoint; }
-    void            has_updated_setpoint( bool updated ) { m_has_updated_setpoint = updated; }
-    void            switch_to_latched_if_needed( button* btn );
     
 protected:
     unsigned long   mills_since_first_pressed();
@@ -62,7 +55,6 @@ public:
     virtual void button_unpressed( button* btn );
     virtual bool is_unpressed() { return false; }
     virtual bool is_pressed()   { return true;  }
-    virtual bool is_latched()   { return false; }
     virtual void reset_state() override;
 
 private:
@@ -70,22 +62,5 @@ private:
     button_state_pressed& operator=( button_state_pressed& );
 };
 
-
-
-class button_state_latched : public button_state_pressed
-{
-private:
-    unsigned long m_last_sp_change_mills;
-
-    unsigned long last_sp_change_mills() { return m_last_sp_change_mills; }
-    void last_sp_change_mills( unsigned long mills ) { m_last_sp_change_mills = mills; }
-    
-public:
-    button_state_latched() {}
-    
-    virtual bool is_latched() override { return true; }
-    virtual void button_pressed( button* btn ) override;
-    virtual void reset_state() override;
-};
 
 #endif // BUTTON_STATE_H

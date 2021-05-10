@@ -1,4 +1,5 @@
 #include "light.h"
+#include "singleton_t.h"
 #include <Arduino.h>
 
 void

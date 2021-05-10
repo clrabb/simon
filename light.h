@@ -10,7 +10,7 @@ class light
 private:
     unsigned short m_pixel_number;
     unsigned short m_red_value;
-    unsigned short m_gree_value;
+    unsigned short m_green_value;
     unsigned short m_blue_value;
 
 // Public methods
@@ -19,10 +19,17 @@ public:
     {
     }
 
-    void pixel_number( short value )         { m_pixel_number = value; }
+    void pixel_number( unsigned value )      { m_pixel_number = value; }
+    unsigned short pixel_number()            { return m_pixel_number;  } 
+    
     void red_value( unsigned short value )   { m_red_value    = value; }
+    unsigned short red_value()               { return m_red_value;     }
+    
     void green_value( unsigned short value ) { m_green_value  = value; }
+    unsigned short green_value()             { return m_green_value;   }
+
     void blue_value( unsigned short value )  { m_blue_value   = value; } 
+    unsigned short blue_value()              { return m_blue_value;    }
    
     
     void turn_on();
@@ -31,7 +38,6 @@ public:
 // Private methods
 //
 private:
-    unsigned short light_pin() { return m_light_pin; }
     
     light( const light& );
     light& operator=( const light& );

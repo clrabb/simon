@@ -13,6 +13,7 @@ private:
     button_state* m_btn_latched;
     
 public:
+    button() {}
     button( short pin );
     short pin() { return m_pin; }
 
@@ -29,13 +30,6 @@ public:
 
     button_state* latched_state() { return m_btn_latched; }
     void latched_state( button_state* state ) { state->reset_state(); m_btn_latched = state; }
-
-    //------------------------------------------
-    // 
-    // Virtual methods
-    //
-    //------------------------------------------
-    virtual void update_setpoint() = 0;
         
     //------------------------------------------
     // 

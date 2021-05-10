@@ -2,7 +2,7 @@
 #include "button.h"
 #include "singleton_t.h"
 #include "simon_consts.h"
-#include <Wire.h>
+//#include <Wire.h>
 #include <Arduino.h>
 
 /* -------------------- BASE -------------------- */
@@ -34,13 +34,6 @@ button_state::switch_to_unpressed( button* btn )
     return;
 }
 
-void
-button_state::switch_to_latched( button* btn )
-{
-    btn->current_state( btn->latched_state() );
-
-    return;
-}
 
 /* -------------------- UNPRESSED -------------------- */
 
@@ -87,33 +80,6 @@ button_state_pressed::reset_state()
 {
     button_state::reset_state();
     this->first_pressed_mills( millis() );
-    this->has_updated_setpoint( false );
-
-    return;
-}
-
-bool
-button_state_pressed::should_latch()
-{
-    unsigned long interval = this->mills_since_first_pressed();
-    bool should_latch = ( interval > BTN_LATCHED_MILLS );
-
-    return should_latch;
-}
-
-bool
-button_state_pressed::is_first_pressed()
-{
-    return !( this->has_updated_setpoint() );
-}
-
-void 
-button_state_pressed::switch_to_latched_if_needed( button* btn )
-{
-    if ( this->should_latch() )
-    {
-        this->switch_to_latched( btn );
-    }
 
     return;
 }
@@ -121,38 +87,7 @@ button_state_pressed::switch_to_latched_if_needed( button* btn )
 void
 button_state_pressed::button_pressed( button* btn )
 {
-    if ( this->is_first_pressed() )
-    {
-        btn->update_setpoint();
-        this->has_updated_setpoint( true );
-    }
-    else
-    {
-        this->switch_to_latched_if_needed( btn );
-    }
-
+    // fix this
+    
     return;
-}
-
-
-
-/* -------------------- LATCHED -------------------- */
-
-void
-button_state_latched::button_pressed( button* btn )
-{
-    if ( ( millis() - this->last_sp_change_mills() ) > BTN_UPDATE_SP_DELAY  )
-    {
-        btn->update_setpoint();
-        this->last_sp_change_mills( millis() );
-    }
-
-    return;
-}
-
-void
-button_state_latched::reset_state()
-{
-    button_state_pressed::reset_state();
-    this->last_sp_change_mills( 0 );
 }
