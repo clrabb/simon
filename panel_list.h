@@ -19,6 +19,7 @@ class panel_list
     public:
         panel_list();
         void tick();
+        random_lightshow();
 };
 }
 
