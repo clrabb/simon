@@ -10,6 +10,12 @@
 
 using namespace simon;
 
+void init_singletons()
+{
+    singleton_t< heartbeat  >( new heartbeat( HEARTBEAT_PIN, HEARTBEAT_DURATION_OFF, HEARTBEAT_DURATION_ON ) );
+    singleton_t< neopixel   >( new neopixel( NUM_NEOPIXELS, NEOPIXEL_PIN, NEO_RGB + NEO_KHZ800 ) );
+    singleton_t< panel_list >( new panel_list() );
+}
 
 void setup()
 {
@@ -22,7 +28,6 @@ void setup()
 
 }
 
-boolean first_time = true;
 void loop()
 {
 
@@ -33,9 +38,4 @@ void loop()
     pl.tick();
 }
 
-void init_singletons()
-{
-    singleton_t< heartbeat  >( new heartbeat( HEARTBEAT_PIN, HEARTBEAT_DURATION_OFF, HEARTBEAT_DURATION_ON ) );
-    singleton_t< neopixel   >( new neopixel( NUM_NEOPIXELS, NEOPIXEL_PIN, NEO_RGB + NEO_KHZ800 ) );
-    singleton_t< panel_list >( new panel_list() );
-}
+
