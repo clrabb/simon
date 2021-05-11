@@ -2,8 +2,15 @@
 #include "heartbeat.h"
 #include "simon_consts.h"
 #include "button.h"
+#include "button_panel.h"
 
 using namespace simon;
+
+abstract_button_panel* panels[ 4 ];
+const short RED_IDX    = 0;
+const short GREEN_IDX  = 1;
+const short YELLOW_IDX = 2;
+const short BLUE_IDX   = 3;
 
 void setup()
 {
@@ -12,9 +19,12 @@ void setup()
     pixels.begin();
     pixels.show();
 
-    delay( 5000 );
+    delay( 1000 );
 
-    simon::button* b = new simon::button( 1 );
+    panels[ RED_IDX    ] = new red_button_panel();
+    panels[ GREEN_IDX  ] = new green_button_panel();
+    panels[ YELLOW_IDX ] = new yellow_button_panel();
+    panels[ BLUE_IDX   ] = new blue_button_panel();
 }
 
 boolean first_time = true;
@@ -22,31 +32,6 @@ void loop()
 {
 
     heartbeat& hb = singleton_t< heartbeat >::instance();
-    neopixel& pixels = singleton_t< neopixel >::instance();
-
-    if ( first_time )
-    {
-        pixels.setPixelColor( 0, 70, 0, 0  );
-        delay( 5 );
-        pixels.show();
-
-        pixels.setPixelColor( 1, 0, 70, 0  );
-        delay( 5 );
-        pixels.show();
-
-        pixels.setPixelColor( 2, 0, 0, 70  );
-        delay( 5 );
-        pixels.show();
-
-        pixels.setPixelColor( 3, 70, 70, 0 );
-        delay( 5 );
-
-
-
-        pixels.show();
-        first_time = false;
-    }
-
     hb.beat();
 }
 
