@@ -1,16 +1,9 @@
 #include "singleton_t.h"
 #include "heartbeat.h"
 #include "simon_consts.h"
-#include "button.h"
-#include "button_panel.h"
+#include "panel_list.h"
 
 using namespace simon;
-
-abstract_button_panel* panels[ 4 ];
-const short RED_IDX    = 0;
-const short GREEN_IDX  = 1;
-const short YELLOW_IDX = 2;
-const short BLUE_IDX   = 3;
 
 void setup()
 {
@@ -21,22 +14,22 @@ void setup()
 
     delay( 1000 );
 
-    panels[ RED_IDX    ] = new red_button_panel();
-    panels[ GREEN_IDX  ] = new green_button_panel();
-    panels[ YELLOW_IDX ] = new yellow_button_panel();
-    panels[ BLUE_IDX   ] = new blue_button_panel();
 }
 
 boolean first_time = true;
 void loop()
 {
 
-    heartbeat& hb = singleton_t< heartbeat >::instance();
+    heartbeat&  hb = singleton_t< heartbeat >::instance();
+    panel_list& pl = singleton_t< panel_list >::instance();
+    
     hb.beat();
+    pl.tick();
 }
 
 void init_singletons()
 {
-    singleton_t< heartbeat >( new heartbeat( HEARTBEAT_PIN, HEARTBEAT_DURATION_OFF, HEARTBEAT_DURATION_ON ) );
-    singleton_t< neopixel  >( new neopixel( NUM_NEOPIXELS, NEOPIXEL_PIN, NEO_RGB + NEO_KHZ800 ) );
+    singleton_t< heartbeat  >( new heartbeat( HEARTBEAT_PIN, HEARTBEAT_DURATION_OFF, HEARTBEAT_DURATION_ON ) );
+    singleton_t< neopixel   >( new neopixel( NUM_NEOPIXELS, NEOPIXEL_PIN, NEO_RGB + NEO_KHZ800 ) );
+    singleton_t< panel_list >( new panel_list() );
 }

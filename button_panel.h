@@ -20,6 +20,8 @@ namespace simon
         {
             this->init();
         }
+
+        void tick();
     
     private:
         void init();

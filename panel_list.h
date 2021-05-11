@@ -5,8 +5,8 @@
 
 namespace simon
 {
-    class panel_list
-    {
+class panel_list
+{
     private:
         abstract_button_panel* m_panels[ 4 ];
 
@@ -14,13 +14,12 @@ namespace simon
         static const short GREEN_IDX  = 1;
         static const short BLUE_IDX   = 2;
         static const short YELLOW_IDX = 3;
+        static const short NUM_PANELS = 4;
 
     public:
         panel_list();
-
-        
-        
-    };
+        void tick();
+};
 }
 
 

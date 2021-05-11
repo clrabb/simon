@@ -12,6 +12,12 @@ abstract_button_panel::init()
     this->init_buzzer();
 }
 
+void 
+abstract_button_panel::tick()
+{
+    
+}
+
 /* -------------------  RED PANEL --------------- */
 void
 red_button_panel::init_light()
