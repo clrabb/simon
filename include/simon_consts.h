@@ -12,8 +12,8 @@ namespace simon
     
     /* ------------- HEARTBEAT -------------------- */
     static const short HEARTBEAT_PIN = 8;
-    static const unsigned long HEARTBEAT_DURATION_OFF = 400;
-    static const unsigned long HEARTBEAT_DURATION_ON  = 1000;
+    static const unsigned long HEARTBEAT_DURATION_OFF = 1500;
+    static const unsigned long HEARTBEAT_DURATION_ON  = 300;
 
     /* ------------- SOUNDS ----------------------- */
     static int RED_BUZZER_FREQ    = 440;

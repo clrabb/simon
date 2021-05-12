@@ -10,31 +10,28 @@ namespace simon
     class abstract_button_panel
     {
     private:
-    /*
+    
         simon::button* m_button;
         simon::light*  m_light;
         simon::buzzer* m_buzzer;
-    */
         
     public:
         abstract_button_panel()
         {
-            //this->init();
         }
 
         void tick();
-    /*
-    private:
+    
+    public:
         void init();
-    */
     
-    //protected:
     
-        //virtual void init_light()  = 0;
-        //virtual void init_buzzer() = 0;
+    protected:
+    
+        virtual void init_light() = 0;
+        virtual void init_buzzer() = 0;
     
 
-    /*
         void button( simon::button* b ) { this->m_button = b; }
         simon::button* button() { return this->m_button; }
         
@@ -45,7 +42,6 @@ namespace simon
         const simon::buzzer* buzzer() { return m_buzzer; }
         void buzzer( simon::buzzer* a_buzzer ) { m_buzzer = a_buzzer; }
         
-    */
     private:
         abstract_button_panel( const abstract_button_panel& );
         abstract_button_panel& operator=( const abstract_button_panel& );
@@ -64,9 +60,8 @@ namespace simon
             }
     
     protected: 
-    
-        //void init_light(){}
-        //void init_buzzer() override;
+        void init_light() override;
+        void init_buzzer() override;
     
 
     private:
@@ -75,7 +70,7 @@ namespace simon
     };
 
     /* ---------------- BLUE PANEL -------------- */
-/*
+
     class blue_button_panel : public abstract_button_panel
     {
     public:
@@ -90,9 +85,9 @@ namespace simon
         blue_button_panel& operator=( const blue_button_panel& );
         
     };
-*/
+
     /* --------------- GREEN PANEL ------------- */
-/*
+
     class green_button_panel : public abstract_button_panel
     {
     public:
@@ -106,9 +101,9 @@ namespace simon
         green_button_panel( const green_button_panel& );
         green_button_panel& operator=( green_button_panel& );
     };
-*/
+
     /* ----------------- YELLOW PANEL --------- */
-/*
+
     class yellow_button_panel : public abstract_button_panel
     {
     public:
@@ -122,7 +117,7 @@ namespace simon
         yellow_button_panel( const yellow_button_panel& );
         yellow_button_panel& operator=( const yellow_button_panel& );  
     };
-*/
+
 }
 
 
