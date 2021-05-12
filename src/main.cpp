@@ -10,11 +10,18 @@
 
 using namespace simon;
 
+abstract_button_panel* panels[1];
+abstract_button_panel* rbp;
 void init_singletons()
 {
+    Serial.println( "In init_singletons()" );
     singleton_t< heartbeat  >( new heartbeat( HEARTBEAT_PIN, HEARTBEAT_DURATION_OFF, HEARTBEAT_DURATION_ON ) );
-    //singleton_t< neopixel   >( new neopixel( NUM_NEOPIXELS, NEOPIXEL_PIN, NEO_RGB + NEO_KHZ800 ) );
-    singleton_t< panel_list >( new panel_list() );
+    //singleton_t< red_button_panel >( new red_button_panel() );
+    //simon::singleton_t< panel_list >( new panel_list() );
+
+    abstract_button_panel* rbp2 = new red_button_panel();
+    rbp2->tick();
+   
 }
 
 void setup()
@@ -25,11 +32,11 @@ void setup()
     
     init_singletons();
 
-    /*
+    
     neopixel& pixels = singleton_t< neopixel >::instance();
     pixels.begin();
     pixels.show();
-    */
+    
 
     delay( 1000 );
 

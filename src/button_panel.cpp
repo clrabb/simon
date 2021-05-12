@@ -5,23 +5,32 @@
 
 using namespace simon;
 
+/*
 void
 abstract_button_panel::init()
 {
-    this->init_light();
-    this->init_buzzer();
+    Serial.println( "In abstract button panel::init()" );
+    //this->init_light();
+    //this->init_buzzer();
 }
+*/ 
 
 void 
 abstract_button_panel::tick()
 {
-    
 }
 
+
 /* -------------------  RED PANEL --------------- */
+
+/*
 void
 red_button_panel::init_light()
 {
+    
+    Serial.println( "In red button panel init_light()" );
+    
+    
     this->button( new simon::button( RED_BUTTON_PIN ) );
 
     simon::light* l = new simon::light();
@@ -33,6 +42,8 @@ red_button_panel::init_light()
     this->light( l );
 }
 
+
+
 void
 red_button_panel::init_buzzer()
 {
@@ -40,9 +51,10 @@ red_button_panel::init_buzzer()
 
     this->buzzer( b );
 }
+*/
 
 /* ------------------ BLUE PANEL --------------- */
-
+/*
 void
 blue_button_panel::init_light()
 {
@@ -52,18 +64,20 @@ blue_button_panel::init_light()
     l->green_value(  BLUE_G_VALUE    );
     l->blue_value(   BLUE_B_VALUE    );
     this->light( l );
-}
+ 
 
 void
 blue_button_panel::init_buzzer()
 {
     simon::buzzer* b = new simon::buzzer( BLUE_BUZZER_FREQ );
 
-    this->buzzer( b );
+    //this->buzzer( b );
 }
+*/
 
 /* ------------------ GREEN PANEL --------------- */
 
+/*
 void
 green_button_panel::init_light()
 {
@@ -81,11 +95,13 @@ green_button_panel::init_buzzer()
 {
     simon::buzzer* b = new simon::buzzer( GREEN_BUZZER_FREQ );
 
-    this->buzzer( b );
+    //this->buzzer( b );
 }
+*/
 
 /* --------------- YELLOW PANEL ---------------- */
 
+/*
 void
 yellow_button_panel::init_light()
 {
@@ -103,5 +119,6 @@ yellow_button_panel::init_buzzer()
 {
     simon::buzzer* b = new simon::buzzer( YELLOW_BUZZER_FREQ );
 
-    this->buzzer( b );
+    //this->buzzer( b );
 }
+*/
