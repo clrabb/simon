@@ -21,9 +21,13 @@ namespace simon
         }
 
         void tick();
+        void random_lightshow();
     
     public:
         void init();
+        void beep( int duration_ms );
+        void beep();
+        void lightshow_beep();
     
     
     protected:

@@ -5,6 +5,19 @@
 using namespace simon;
 
 void
+light::init_once()
+{
+    static bool once = []()
+    {
+        neopixel& np = singleton_t< neopixel >::instance();
+        np.begin();
+        np.show();
+        Serial.println( "inited neopixels" );
+        return true;
+    }();
+}
+
+void
 light::turn_on()
 {
     neopixel& pixel_array = singleton_t< neopixel >::instance();

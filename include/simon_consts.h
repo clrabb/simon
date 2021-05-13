@@ -51,10 +51,9 @@ namespace simon
     static const short YELLOW_G_VALUE      = 70;
     static const short YELLOW_B_VALUE      = 0;
 
-    
-    
-
-    
+    /* PANELS */
+    static const short NUM_RAND_LIGHTSHOW   = 20;
+    static const short LS_BEEP_DURATION_MS  = 50;
 }
 
 #endif // SIMON_CONSTS_H

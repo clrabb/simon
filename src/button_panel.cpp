@@ -3,6 +3,7 @@
 #include "button.h"
 #include "light.h"
 
+
 using namespace simon;
 
 
@@ -12,12 +13,32 @@ abstract_button_panel::init()
     this->init_light();
     this->init_buzzer();
 }
- 
 
 void 
 abstract_button_panel::tick()
 {
 }
+
+void
+abstract_button_panel::lightshow_beep()
+{
+    this->beep( LS_BEEP_DURATION_MS );
+}
+
+void 
+abstract_button_panel::beep( int duration_ms )
+{
+    //this->light_on();
+    //this->beep();
+}
+
+void
+abstract_button_panel::beep()
+{
+    //this->button_panel_state()->beep( this );
+}
+
+
 
 
 /* -------------------  RED PANEL --------------- */
@@ -33,6 +54,7 @@ red_button_panel::init_light()
     l->red_value(    RED_R_VALUE    );
     l->green_value(  RED_G_VALUE    );
     l->blue_value(   RED_B_VALUE    );
+    l->init_once();
 
     this->light( l );
 }
@@ -57,6 +79,8 @@ blue_button_panel::init_light()
     l->red_value(    BLUE_R_VALUE    );
     l->green_value(  BLUE_G_VALUE    );
     l->blue_value(   BLUE_B_VALUE    );
+    l->init_once();
+
     this->light( l );
 } 
 
@@ -80,6 +104,7 @@ green_button_panel::init_light()
     l->red_value(    GREEN_R_VALUE   );
     l->green_value(  GREEN_G_VALUE   );
     l->blue_value(   GREEN_B_VALUE   );
+    l->init_once();
 
     this->light( l );
 }
@@ -104,6 +129,7 @@ yellow_button_panel::init_light()
     l->red_value(    YELLOW_R_VALUE   );
     l->green_value(  YELLOW_G_VALUE   );
     l->blue_value(   YELLOW_B_VALUE   );
+    l->init_once();
 
     this->light( l );
 }

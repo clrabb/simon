@@ -2,42 +2,48 @@
 #define BUTTON_STATE_H
 
 
+namespace simon { class button; }
+
 namespace simon
 {
-    class button;
+    
     
     class button_state
     {
     protected:
-        virtual void switch_to_pressed( button* btn );
-        virtual void switch_to_unpressed( button* btn );
+        virtual void switch_to_pressed( simon::button* btn );
+        virtual void switch_to_unpressed( simon::button* btn );
     
     public:
         button_state() {}
         
-        virtual void button_pressed( button* btn )   = 0;
-        virtual void button_unpressed( button* btn ) = 0;
+        virtual void button_pressed( simon::button* btn )   = 0;
+        virtual void button_unpressed( simon::button* btn ) = 0;
         virtual void reset_state() {}
         virtual bool is_unpressed() = 0;
         virtual bool is_pressed()   = 0;
-        void update( button* btn );
+        void update( simon::button* btn );
     
     private:
         button_state( button_state& );
         button_state& operator=( button_state& );
     };
+
+    /* -------------- UNPRESSED ------------- */
     
     class button_state_unpressed : public button_state
     {    
     public:
         button_state_unpressed() {}
     
-        virtual void button_pressed( button* btn );
-        virtual void button_unpressed( button* btn );
+        virtual void button_pressed( simon::button* btn );
+        virtual void button_unpressed( simon::button* btn );
         virtual bool is_unpressed() { return true;  }
         virtual bool is_pressed()   { return false; }
     };
     
+    /* ------------ PRESSED ---------------- */
+
     class button_state_pressed: public button_state
     {
     private:
@@ -53,8 +59,8 @@ namespace simon
          
     public:    
         button_state_pressed();
-        virtual void button_pressed( button* btn );
-        virtual void button_unpressed( button* btn );
+        virtual void button_pressed( simon::button* btn );
+        virtual void button_unpressed( simon::button* btn );
         virtual bool is_unpressed() { return false; }
         virtual bool is_pressed()   { return true;  }
         virtual void reset_state() override;

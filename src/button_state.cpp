@@ -2,7 +2,6 @@
 #include "button.h"
 #include "singleton_t.h"
 #include "simon_consts.h"
-//#include <Wire.h>
 #include <Arduino.h>
 
 using namespace simon;
@@ -10,7 +9,7 @@ using namespace simon;
 /* -------------------- BASE -------------------- */
 
 void
-button_state::update( button* btn )
+button_state::update( simon::button* btn )
 {
     ( digitalRead( btn->pin() ) == HIGH )
         ? this->button_pressed( btn )
@@ -21,7 +20,7 @@ button_state::update( button* btn )
 }
 
 void
-button_state::switch_to_pressed( button* btn )
+button_state::switch_to_pressed( simon::button* btn )
 {
     btn->current_state( btn->pressed_state() );
 
@@ -29,7 +28,7 @@ button_state::switch_to_pressed( button* btn )
 }
 
 void
-button_state::switch_to_unpressed( button* btn )
+button_state::switch_to_unpressed( simon::button* btn )
 {
     btn->current_state( btn->unpressed_state() );
 
@@ -40,14 +39,14 @@ button_state::switch_to_unpressed( button* btn )
 /* -------------------- UNPRESSED -------------------- */
 
 void
-button_state_unpressed::button_pressed( button* btn )
+button_state_unpressed::button_pressed( simon::button* btn )
 {
     this->switch_to_pressed( btn );
     return;
 }
 
 void
-button_state_unpressed::button_unpressed( button* btn )
+button_state_unpressed::button_unpressed( simon::button* btn )
 {
     // I'm already unpresed
     //
@@ -71,7 +70,7 @@ button_state_pressed::mills_since_first_pressed()
 }
 
 void
-button_state_pressed::button_unpressed( button* btn )
+button_state_pressed::button_unpressed( simon::button* btn )
 {
     this->switch_to_unpressed( btn );
     return;
@@ -87,7 +86,7 @@ button_state_pressed::reset_state()
 }
 
 void
-button_state_pressed::button_pressed( button* btn )
+button_state_pressed::button_pressed( simon::button* btn )
 {
     // fix this
     

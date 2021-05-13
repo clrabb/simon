@@ -21,6 +21,8 @@ namespace simon
         light()
         {
         }
+
+        void init_once();
     
         void pixel_number( unsigned value )      { m_pixel_number = value; }
         unsigned short pixel_number()            { return m_pixel_number;  } 
