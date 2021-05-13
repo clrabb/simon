@@ -1,11 +1,7 @@
 #include <Arduino.h>
 #include <unity.h>
-#include "simon_consts.h"
-#include "simon_types.h"
 #include "button_panel_state.h"
-#include "button_state.h"
-#include "button.h"
-#include "singleton_t.h"
+
 
 
 using namespace simon;

@@ -12,9 +12,6 @@ namespace simon
 
     class abstract_button_panel_state
     {
-        private:
-            
-
         public:
             abstract_button_panel_state(){}
             ~abstract_button_panel_state(){}

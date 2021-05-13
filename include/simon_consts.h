@@ -16,11 +16,13 @@ namespace simon
     static const unsigned long HEARTBEAT_DURATION_ON  = 300;
 
     /* ------------- SOUNDS ----------------------- */
-    static int RED_BUZZER_FREQ    = 440;
-    static int GREEN_BUZZER_FREQ  = 493;
-    static int BLUE_BUZZER_FREQ   = 523;
-    static int YELLOW_BUZZER_FREQ = 587;
     
+    static const int RED_BUZZER_FREQ    = 440;
+    static const int GREEN_BUZZER_FREQ  = 493;
+    static const int BLUE_BUZZER_FREQ   = 523;
+    static const int YELLOW_BUZZER_FREQ = 587;
+    
+
     /* ------------- LEDs --------------------------*/
     static const short NEOPIXEL_PIN        = 6;
     static const short NUM_NEOPIXELS       = 4;
