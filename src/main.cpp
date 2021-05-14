@@ -3,7 +3,7 @@
 #include "heartbeat.h"
 #include "simon_consts.h"
 #include "panel_list.h"
-#include "hello.h"
+#include "junk.h"
 
 #ifndef LED_BUILTIN
 #define LED_BUILTIN 13
@@ -29,8 +29,11 @@ void setup()
     panel_list& pl = singleton_t< panel_list >::instance();
     pl.random_lightshow();
 
-    Serial.println( "Hello" );
     pinMode( LED_BUILTIN, OUTPUT );
+
+    junk j;
+    Serial.println( j.junkit() );
+
 }
 
 
