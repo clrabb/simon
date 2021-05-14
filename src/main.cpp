@@ -3,6 +3,7 @@
 #include "heartbeat.h"
 #include "simon_consts.h"
 #include "panel_list.h"
+#include "hello.h"
 
 #ifndef LED_BUILTIN
 #define LED_BUILTIN 13
@@ -30,6 +31,10 @@ void setup()
 
     Serial.println( "Hello" );
     pinMode( LED_BUILTIN, OUTPUT );
+
+    hello h;
+
+    //Serial.println( h.message() );
 }
 
 
