@@ -31,10 +31,6 @@ void setup()
 
     Serial.println( "Hello" );
     pinMode( LED_BUILTIN, OUTPUT );
-
-    hello h;
-
-    //Serial.println( h.message() );
 }
 
 
