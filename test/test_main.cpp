@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <unity.h>
 #include "button_panel_state.h"
+#include "junk.h"
 
 
 
@@ -11,6 +12,11 @@ void test_led_builtin_low()
     TEST_ASSERT_EQUAL( LOW, digitalRead( LED_BUILTIN ) );
 }
 
+void test_junk()
+{
+    junk j;
+    TEST_ASSERT_EQUAL( "Junk!", j.junkit() );
+}
 
 void test_panel_state_active_is_active()
 {
@@ -75,7 +81,7 @@ void setup()
     UNITY_BEGIN();
     delay( 1000 );
 
-
+/*
     init_singletons();
 
     RUN_TEST( test_led_builtin_low );
@@ -83,7 +89,9 @@ void setup()
     RUN_TEST( test_panel_state_active_is_not_active );
     RUN_TEST( test_panel_state_inactive_is_not_active );
     RUN_TEST( test_heartbeat );
+*/
 
+    RUN_TEST( test_junk );
     UNITY_END();
 }
 
