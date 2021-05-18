@@ -25,8 +25,10 @@ namespace simon
     
     public:
         void init();
-        void beep( int duration_ms );
-        void beep();
+        void turn_on_beep();
+        void turn_off_beep();
+        void turn_on_light();
+        void turn_off_light();
         void lightshow_beep();
     
     

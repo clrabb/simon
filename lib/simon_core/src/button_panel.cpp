@@ -19,27 +19,31 @@ abstract_button_panel::tick()
 {
 }
 
-void
-abstract_button_panel::lightshow_beep()
+void 
+abstract_button_panel::turn_on_beep()
 {
-    this->beep( LS_BEEP_DURATION_MS );
+
+}
+    
+void 
+abstract_button_panel::turn_off_beep()
+{
+
 }
 
 void 
-abstract_button_panel::beep( int duration_ms )
+abstract_button_panel::turn_on_light()
 {
-    //this->light_on();
-    //this->beep();
+
 }
 
-void
-abstract_button_panel::beep()
+void 
+abstract_button_panel::turn_off_light()
 {
-    //this->button_panel_state()->beep( this );
+
 }
 
-
-
+    
 
 /* -------------------  RED PANEL --------------- */
 

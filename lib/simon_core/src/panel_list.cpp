@@ -41,7 +41,7 @@ panel_list::random_lightshow()
     {
         int rand_value = random( NUM_PANELS );
         
-        this->m_panels[ rand_value ]->lightshow_beep();
+        //this->m_panels[ rand_value ]->lightshow_beep();
     }
 }
 
@@ -49,5 +49,5 @@ void
 panel_list::beep_panel( const short panel_idx )
 {
     abstract_button_panel* panel = this->m_panels[ panel_idx ];
-    panel->beep();
+    panel->turn_on_beep();
 }

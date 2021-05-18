@@ -27,18 +27,9 @@ button::is_unpressed()
     return this->current_state()->is_unpressed();
 }
 
-/*
-bool 
-button::is_latched()
-{
-    return this->current_state()->is_latched();
-}
-*/
-
 void
 button::update()
 {
     this->current_state()->update( this );
     return;
-    
 }

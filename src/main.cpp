@@ -6,8 +6,10 @@
 #include "junk.h"
 
 #ifndef LED_BUILTIN
-#define LED_BUILTIN 13
+//#define LED_BUILTIN 13
 #endif 
+
+#ifndef UNIT_TEST
 
 using namespace simon;
 
@@ -46,4 +48,4 @@ void loop()
     panels.tick();
 } 
 
-
+#endif // UNIT_TEST

@@ -13,7 +13,7 @@ namespace simon
     /* ------------- HEARTBEAT -------------------- */
     static const short HEARTBEAT_PIN = 8;
     static const unsigned long HEARTBEAT_DURATION_OFF = 1500;
-    static const unsigned long HEARTBEAT_DURATION_ON  = 300;
+    static const unsigned long HEARTBEAT_DURATION_ON  = 100;
 
     /* ------------- SOUNDS ----------------------- */
     
