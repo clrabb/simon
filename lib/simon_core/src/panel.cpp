@@ -1,4 +1,4 @@
-#include "button_panel.h"
+#include "panel.h"
 #include "simon_consts.h"
 #include "button.h"
 #include "light.h"
@@ -8,42 +8,30 @@ using namespace simon;
 
 
 void
-abstract_button_panel::init()
+abstract_panel::init()
 {
     this->init_light();
     this->init_buzzer();
 }
 
-void 
-abstract_button_panel::tick()
+void
+abstract_panel::activate()
 {
-}
-
-void 
-abstract_button_panel::turn_on_beep()
-{
-
+    this->current_state()->activate( this );
 }
     
-void 
-abstract_button_panel::turn_off_beep()
-{
 
+void
+abstract_panel::_change_to_active_state()
+{
+    this->current_state( this->active_state() );
 }
 
-void 
-abstract_button_panel::turn_on_light()
+void
+abstract_panel::tick()
 {
-
+    this->current_state()->tick( this );
 }
-
-void 
-abstract_button_panel::turn_off_light()
-{
-
-}
-
-    
 
 /* -------------------  RED PANEL --------------- */
 

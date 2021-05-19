@@ -1,8 +1,7 @@
 #include "panel_list.h"
-#include "button_panel.h"
+#include "panel.h"
 #include "simon_consts.h"
 #include <Arduino.h>
-
 
 using namespace simon;
 
@@ -46,8 +45,8 @@ panel_list::random_lightshow()
 }
 
 void
-panel_list::beep_panel( const short panel_idx )
+panel_list::activate_panel( const short panel_idx )
 {
-    abstract_button_panel* panel = this->m_panels[ panel_idx ];
-    panel->turn_on_beep();
+    abstract_panel* panel = this->m_panels[ panel_idx ];
+    panel->activate();
 }

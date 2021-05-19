@@ -1,7 +1,7 @@
 #ifndef PANEL_LIST_H
 #define PANEL_LIST_H
 
-#include "button_panel.h"
+#include "panel.h"
 
 namespace simon
 {
@@ -17,7 +17,7 @@ namespace simon
             static const short YELLOW_IDX = 3;
             
 
-            abstract_button_panel* m_panels[ panel_list::NUM_PANELS ];
+            abstract_panel* m_panels[ panel_list::NUM_PANELS ];
 
             void init_panels();
 
@@ -25,7 +25,7 @@ namespace simon
             panel_list();
             void tick();
             void random_lightshow();
-            void beep_panel( const short panel_idx );
+            void activate_panel( const short panel_idx );
     };
 }
 

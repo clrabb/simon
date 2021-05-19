@@ -4,33 +4,45 @@
 #include "button.h"
 #include "light.h"
 #include "buzzer.h"
+#include "panel_state.h"
+#include "simon_consts.h"
 
 namespace simon
 {
-    class abstract_button_panel
+    /* --------------- Abstract panel ------------- */
+    class abstract_panel
     {
     private:
     
-        simon::button* m_button;
-        simon::light*  m_light;
-        simon::buzzer* m_buzzer;
+        simon::button*               m_button;
+        simon::light*                m_light;
+        simon::buzzer*               m_buzzer;
+        simon::abstract_panel_state* m_current_state;
+        simon::abstract_panel_state* m_active_state;
+        simon::abstract_panel_state* m_inactive_state;
+        
         
     public:
-        abstract_button_panel()
+        abstract_panel()
         {
+            m_active_state   = new panel_state_active( PANEL_AGE_DEFAULT );
+            m_inactive_state = new panel_state_inactive();
+            m_current_state  = m_inactive_state;
         }
 
-        void tick();
-        void random_lightshow();
-    
-    public:
+        // Initialization
+        //
         void init();
-        void turn_on_beep();
-        void turn_off_beep();
-        void turn_on_light();
-        void turn_off_light();
-        void lightshow_beep();
-    
+        
+        // Behavior
+        //
+        void activate();
+        void _change_to_active_state();
+        void _change_to_inactive_state();
+
+        // Timing
+        //
+        void tick();
     
     protected:
     
@@ -47,21 +59,27 @@ namespace simon
     
         const simon::buzzer* buzzer() { return m_buzzer; }
         void buzzer( simon::buzzer* a_buzzer ) { m_buzzer = a_buzzer; }
+
+        abstract_panel_state* current_state()  { return m_current_state;  }
+        abstract_panel_state* active_state()   { return m_active_state;   } 
+        abstract_panel_state* inactive_state() { return m_inactive_state; }
         
     private:
-        abstract_button_panel( const abstract_button_panel& );
-        abstract_button_panel& operator=( const abstract_button_panel& );
+        
+        void current_state( abstract_panel_state* a_state ) { this->m_current_state = a_state; }
+        abstract_panel( const abstract_panel& );
+        abstract_panel& operator=( const abstract_panel& );
     };
 
 
 
     /* ------------------- RED PANEL --------------*/
     
-    class red_button_panel : public abstract_button_panel
+    class red_button_panel : public abstract_panel
     {
     public: 
         red_button_panel() 
-            : abstract_button_panel()
+            : abstract_panel()
             {
             }
     
@@ -77,7 +95,7 @@ namespace simon
 
     /* ---------------- BLUE PANEL -------------- */
 
-    class blue_button_panel : public abstract_button_panel
+    class blue_button_panel : public abstract_panel
     {
     public:
         blue_button_panel(){}
@@ -94,7 +112,7 @@ namespace simon
 
     /* --------------- GREEN PANEL ------------- */
 
-    class green_button_panel : public abstract_button_panel
+    class green_button_panel : public abstract_panel
     {
     public:
         green_button_panel(){}  
@@ -110,7 +128,7 @@ namespace simon
 
     /* ----------------- YELLOW PANEL --------- */
 
-    class yellow_button_panel : public abstract_button_panel
+    class yellow_button_panel : public abstract_panel
     {
     public:
         yellow_button_panel(){}
