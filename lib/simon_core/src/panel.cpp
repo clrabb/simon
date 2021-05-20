@@ -12,25 +12,31 @@ abstract_panel::init()
 {
     this->init_light();
     this->init_buzzer();
+    this->activation_token( this->null_activation_token() );
 }
 
 void
-abstract_panel::activate()
+abstract_panel::activate( abstract_activation_token* token )
 {
-    this->current_state()->activate( this );
-}
-    
-
-void
-abstract_panel::_change_to_active_state()
-{
-    this->current_state( this->active_state() );
-}
+    token->owner( this );
+}    
 
 void
 abstract_panel::tick()
 {
-    this->current_state()->tick( this );
+    this->activation_token()->tick();
+}
+
+void
+abstract_panel::tick_from_active_token()
+{
+
+}
+
+void
+abstract_panel::evict_token()
+{
+    this->activation_token( this->null_activation_token() );
 }
 
 /* -------------------  RED PANEL --------------- */

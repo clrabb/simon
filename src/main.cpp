@@ -33,7 +33,6 @@ void setup()
 
     pinMode( LED_BUILTIN, OUTPUT );
 
-    junk j;
     Serial.println( j.junkit() );
 
 }

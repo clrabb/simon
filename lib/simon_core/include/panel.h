@@ -4,7 +4,7 @@
 #include "button.h"
 #include "light.h"
 #include "buzzer.h"
-#include "panel_state.h"
+#include "panel_activation_token.h"
 #include "simon_consts.h"
 
 namespace simon
@@ -17,17 +17,13 @@ namespace simon
         simon::button*               m_button;
         simon::light*                m_light;
         simon::buzzer*               m_buzzer;
-        simon::abstract_panel_state* m_current_state;
-        simon::abstract_panel_state* m_active_state;
-        simon::abstract_panel_state* m_inactive_state;
-        
+        abstract_activation_token*   m_activation_token;
+        abstract_activation_token*   m_null_activation_token;
         
     public:
         abstract_panel()
+            : m_activation_token( this->null_activation_token() )
         {
-            m_active_state   = new panel_state_active( PANEL_AGE_DEFAULT );
-            m_inactive_state = new panel_state_inactive();
-            m_current_state  = m_inactive_state;
         }
 
         // Initialization
@@ -36,13 +32,17 @@ namespace simon
         
         // Behavior
         //
-        void activate();
-        void _change_to_active_state();
-        void _change_to_inactive_state();
+        void activate( abstract_activation_token* token );
 
         // Timing
         //
         void tick();
+        void evict_token();
+    
+    public:
+        // dispatch from token
+        //
+        void tick_from_active_token();
     
     protected:
     
@@ -60,13 +60,13 @@ namespace simon
         const simon::buzzer* buzzer() { return m_buzzer; }
         void buzzer( simon::buzzer* a_buzzer ) { m_buzzer = a_buzzer; }
 
-        abstract_panel_state* current_state()  { return m_current_state;  }
-        abstract_panel_state* active_state()   { return m_active_state;   } 
-        abstract_panel_state* inactive_state() { return m_inactive_state; }
+        abstract_activation_token* activation_token() { return this->m_activation_token; }
+        void activation_token( abstract_activation_token* a_token ) { this->m_activation_token = a_token; }
+
+        abstract_activation_token* null_activation_token() { return this->m_null_activation_token; }
         
     private:
         
-        void current_state( abstract_panel_state* a_state ) { this->m_current_state = a_state; }
         abstract_panel( const abstract_panel& );
         abstract_panel& operator=( const abstract_panel& );
     };

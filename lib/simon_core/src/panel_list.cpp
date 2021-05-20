@@ -13,6 +13,7 @@ panel_list::panel_list()
     this->m_panels[ GREEN_IDX  ] = new green_button_panel();
 
     this->init_panels();
+    this->activation_token( new panel_activation_token( 5 ) );
 }
 
 void
@@ -48,5 +49,4 @@ void
 panel_list::activate_panel( const short panel_idx )
 {
     abstract_panel* panel = this->m_panels[ panel_idx ];
-    panel->activate();
 }
