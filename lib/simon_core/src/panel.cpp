@@ -2,45 +2,66 @@
 #include "simon_consts.h"
 #include "button.h"
 #include "light.h"
+#include "panel_activation_token.h"
 
 
 using namespace simon;
 
 
+abstract_panel::abstract_panel()
+{
+    abstract_activation_token* token = new inactive_panel_token();
+    this->m_inactive_token           = token;
+    this->m_current_activation_token = token;
+    //this->init();
+}
+
 void
 abstract_panel::init()
 {
     this->init_light();
-    this->init_buzzer();
-    this->activation_token( this->null_activation_token() );
+    //this->init_buzzer();
 }
 
 void
 abstract_panel::activate( abstract_activation_token* token )
 {
+    this->current_activation_token( token );
     token->owner( this );
 }    
 
 void
 abstract_panel::tick()
 {
-    this->activation_token()->tick();
+    this->current_activation_token()->tick();
 }
 
 void
 abstract_panel::tick_from_active_token()
 {
+    this->light()->turn_on();
+    this->buzzer()->turn_on();
+}
 
+void
+abstract_panel::tick_from_inactive_token()
+{
+    this->light()->turn_off();
+    this->buzzer()->turn_off();
 }
 
 void
 abstract_panel::evict_token()
 {
-    this->activation_token( this->null_activation_token() );
+    this->current_activation_token()->unset_owner();
+    this->current_activation_token( this->inactive_token() );
 }
 
 /* -------------------  RED PANEL --------------- */
 
+red_button_panel::red_button_panel()
+{
+}
 
 void
 red_button_panel::init_light()
@@ -69,6 +90,10 @@ red_button_panel::init_buzzer()
 
 /* ------------------ BLUE PANEL --------------- */
 
+blue_button_panel::blue_button_panel()
+{
+}
+
 void
 blue_button_panel::init_light()
 {
@@ -93,6 +118,9 @@ blue_button_panel::init_buzzer()
 
 /* ------------------ GREEN PANEL --------------- */
 
+green_button_panel::green_button_panel()
+{
+}
 
 void
 green_button_panel::init_light()
@@ -118,6 +146,9 @@ green_button_panel::init_buzzer()
 
 /* --------------- YELLOW PANEL ---------------- */
 
+yellow_button_panel::yellow_button_panel()
+{
+}
 
 void
 yellow_button_panel::init_light()
@@ -139,3 +170,4 @@ yellow_button_panel::init_buzzer()
 
     this->buzzer( b );
 }
+

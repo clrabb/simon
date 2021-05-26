@@ -15,12 +15,11 @@ namespace simon
         unsigned short m_red_value;
         unsigned short m_green_value;
         unsigned short m_blue_value;
+        bool           m_is_on;
     
     // Public methods
     public:
-        light()
-        {
-        }
+        light();
 
         void init_once();
     
@@ -35,6 +34,9 @@ namespace simon
     
         void blue_value( unsigned short value )  { m_blue_value   = value; } 
         unsigned short blue_value()              { return m_blue_value;    }
+
+        bool is_on() { return this->m_is_on; }
+        bool is_off() { return !( this->is_on() ); }
        
         
         void turn_on();
@@ -43,7 +45,10 @@ namespace simon
     // Private methods
     //
     private:
-        
+        void is_on( bool state ) { this->m_is_on = state; }
+
+        // Compiler crap
+        //
         light( const light& );
         light& operator=( const light& );
     

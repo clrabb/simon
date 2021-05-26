@@ -4,8 +4,13 @@
 
 using namespace simon;
 
+simon::light::light()
+{
+    this->m_is_on = false;
+}
+
 void
-light::init_once()
+simon::light::init_once()
 {
     static bool once = []()
     {
@@ -18,8 +23,12 @@ light::init_once()
 }
 
 void
-light::turn_on()
+simon::light::turn_on()
 {
+    if ( this->is_on() )
+        return;  // Early out if we are already on.
+
+
     neopixel& pixel_array = singleton_t< neopixel >::instance();
     pixel_array.setPixelColor( 
             this->pixel_number(),
@@ -28,12 +37,17 @@ light::turn_on()
             this->blue_value()
         );
 
+    this->is_on( true );
+
     pixel_array.show();
 }
 
 void
-light::turn_off()
+simon::light::turn_off()
 {
+    if ( this->is_off() )
+        return; // Early out if off
+
     neopixel& pixel_array = singleton_t< neopixel >::instance();
     pixel_array.setPixelColor(
             this->pixel_number(),
@@ -41,6 +55,8 @@ light::turn_off()
             0,
             0
         );
+
+    this->is_on( false );
 
     pixel_array.show();
 }

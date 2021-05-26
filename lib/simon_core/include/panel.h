@@ -14,17 +14,14 @@ namespace simon
     {
     private:
     
-        simon::button*               m_button;
-        simon::light*                m_light;
-        simon::buzzer*               m_buzzer;
-        abstract_activation_token*   m_activation_token;
-        abstract_activation_token*   m_null_activation_token;
+        simon::button*                    m_button;
+        simon::light*                     m_light;
+        simon::buzzer*                    m_buzzer; 
+        simon::abstract_activation_token* m_current_activation_token;   
+        simon::abstract_activation_token* m_inactive_token;             // I own this
         
     public:
-        abstract_panel()
-            : m_activation_token( this->null_activation_token() )
-        {
-        }
+        abstract_panel();
 
         // Initialization
         //
@@ -32,18 +29,25 @@ namespace simon
         
         // Behavior
         //
-        void activate( abstract_activation_token* token );
+        void activate( abstract_activation_token* activation_token );
 
         // Timing
         //
         void tick();
         void evict_token();
+        void turn_on();
+        void turn_on_light();
+        void turn_on_buzzer();
+        void turn_off_light();
+        void turn_off_buzzer();
+
     
     public:
         // dispatch from token
         //
         void tick_from_active_token();
-    
+        void tick_from_inactive_token();
+
     protected:
     
         virtual void init_light() = 0;
@@ -53,20 +57,21 @@ namespace simon
         void button( simon::button* b ) { this->m_button = b; }
         simon::button* button() { return this->m_button; }
         
-    
         simon::light* light() { return m_light; }
         void light( simon::light* a_light ) { m_light = a_light; }
     
-        const simon::buzzer* buzzer() { return m_buzzer; }
+        simon::buzzer* buzzer() { return m_buzzer; }
         void buzzer( simon::buzzer* a_buzzer ) { m_buzzer = a_buzzer; }
 
-        abstract_activation_token* activation_token() { return this->m_activation_token; }
-        void activation_token( abstract_activation_token* a_token ) { this->m_activation_token = a_token; }
+    protected:
+        abstract_activation_token* current_activation_token(){ return this->m_current_activation_token; }
+        void current_activation_token( abstract_activation_token* token ) { this->m_current_activation_token = token; }
 
-        abstract_activation_token* null_activation_token() { return this->m_null_activation_token; }
-        
     private:
-        
+        abstract_activation_token* inactive_token() { return this->m_inactive_token; }
+
+    private:
+        // Compiler shit
         abstract_panel( const abstract_panel& );
         abstract_panel& operator=( const abstract_panel& );
     };
@@ -78,10 +83,7 @@ namespace simon
     class red_button_panel : public abstract_panel
     {
     public: 
-        red_button_panel() 
-            : abstract_panel()
-            {
-            }
+        red_button_panel();
     
     protected: 
         void init_light() override;
@@ -98,7 +100,7 @@ namespace simon
     class blue_button_panel : public abstract_panel
     {
     public:
-        blue_button_panel(){}
+        blue_button_panel();
 
     protected:
         void init_light() override;
@@ -115,7 +117,7 @@ namespace simon
     class green_button_panel : public abstract_panel
     {
     public:
-        green_button_panel(){}  
+        green_button_panel();
 
     protected:
         void init_light() override;
@@ -131,7 +133,7 @@ namespace simon
     class yellow_button_panel : public abstract_panel
     {
     public:
-        yellow_button_panel(){}
+        yellow_button_panel();
 
     protected:
         void init_light() override;

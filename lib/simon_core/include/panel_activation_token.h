@@ -1,75 +1,79 @@
 #ifndef PANEL_ACTIVATION_TOKEN
 #define PANEL_ACTIVATION_TOKEN
 
+#include <stddef.h>
+
 namespace simon
 {
     class abstract_panel;
 
     class abstract_activation_token
     {
+        private:
+            abstract_panel* m_owner;
+            unsigned long   m_owned_at_mills;
+
         public:
-            abstract_activation_token(){}
+            abstract_activation_token()
+                : m_owner( nullptr )
+            {}
+
             virtual ~abstract_activation_token(){}
 
         public:
             virtual void tick() = 0;
-            virtual void owner( abstract_panel* ){}
-            virtual bool is_owned() { return false; }
+            abstract_panel* owner();
+            void owner( abstract_panel* a_panel );
+            bool is_owned() { return this->m_owner != nullptr; }
+            bool is_not_owned() { return !( this->is_owned() ); }
+            void unset_owner();
+            unsigned long owned_at_mills();
+
+        private:
+            void owned_at_mills( unsigned long owned_at_mills );
     };
 
-    class null_activation_token : public abstract_activation_token
+    class inactive_panel_token : public abstract_activation_token
     {
         public:
-            null_activation_token(){}
-            virtual ~null_activation_token(){}
+            inactive_panel_token(){}
+            virtual ~inactive_panel_token(){}
 
             void tick() override {};
 
         private:
-            null_activation_token& operator=( const null_activation_token& );
-            null_activation_token( const null_activation_token& );
+            inactive_panel_token& operator=( const inactive_panel_token& );
+            inactive_panel_token( const inactive_panel_token& );
     };
 
-    class panel_activation_token : public abstract_activation_token
+    class active_panel_token : public abstract_activation_token
     {
         private:
-            abstract_panel* m_owner;
-            unsigned long   m_owned_at_mills;
             unsigned long   m_lifespan;
 
         public:   
-            panel_activation_token( unsigned long lifespan )
+            active_panel_token( unsigned long lifespan )
                 : m_lifespan( lifespan )
             {}
-            virtual ~panel_activation_token(){}
-
+            virtual ~active_panel_token(){}
             
             // Testing
             bool should_leave_panel();
-            bool is_owned() override;
 
             // Behavior
             //
             void tick() override;
-            void unset_owner();
             unsigned long age();
 
         private:
-            // Setters/getters
-            //
-            unsigned long owned_at_mills() { return m_owned_at_mills; }
-            void owned_at_mills( unsigned long mills ) { this->m_owned_at_mills = mills; }
             
-            abstract_panel* owner() { return this->m_owner; }
-            void owner( abstract_panel* ) override;
-
             unsigned long lifespan() { return this->m_lifespan; }
             void lifespan( unsigned long span ) { this->m_lifespan = span; }
 
             // Compiler crap
             //
-            panel_activation_token& operator=( const panel_activation_token& );
-            panel_activation_token( const panel_activation_token& );
+            active_panel_token& operator=( const active_panel_token& );
+            active_panel_token( const active_panel_token& );
     };
 }
 

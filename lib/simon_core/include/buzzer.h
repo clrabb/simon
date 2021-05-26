@@ -14,7 +14,8 @@ namespace simon
         {
         }
 
-    void beep();
+    void turn_on();
+    void turn_off();
         
     private:
         buzzer( const buzzer& );
