@@ -12,7 +12,6 @@ namespace simon
         button_state* m_current_state;
         button_state* m_btn_unpressed;
         button_state* m_btn_pressed;
-        button_state* m_btn_latched;
         
     public:
         button() {}
@@ -30,8 +29,6 @@ namespace simon
         button_state* pressed_state() { return m_btn_pressed; }
         void pressed_state( button_state* state ) { state->reset_state(); m_btn_pressed = state; }
     
-        button_state* latched_state() { return m_btn_latched; }
-        void latched_state( button_state* state ) { state->reset_state(); m_btn_latched = state; }
             
         //------------------------------------------
         // 

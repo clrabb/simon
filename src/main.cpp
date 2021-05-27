@@ -22,6 +22,11 @@ void init_singletons()
 
     panel_list& panels = singleton_t< panel_list >::instance();
     panels.init_panels();
+
+    pinMode( RED_BUTTON_PIN,    INPUT );
+    pinMode( BLUE_BUTTON_PIN,   INPUT );
+    pinMode( GREEN_BUTTON_PIN,  INPUT );
+    pinMode( YELLOW_BUTTON_PIN, INPUT );
     
     Serial.println( "All singletons init'd" );
 }

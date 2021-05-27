@@ -10,8 +10,7 @@ button::button( short pin )
 {
     this->pressed_state(   new button_state_pressed()   );
     this->unpressed_state( new button_state_unpressed() );
-    //this->latched_state(   new button_state_latched()   );
-
+    
     this->current_state( this->unpressed_state() );
 }
 

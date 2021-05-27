@@ -13,14 +13,13 @@ abstract_panel::abstract_panel()
     abstract_activation_token* token = new inactive_panel_token();
     this->m_inactive_token           = token;
     this->m_current_activation_token = token;
-    //this->init();
 }
 
 void
 abstract_panel::init()
 {
     this->init_light();
-    //this->init_buzzer();
+    this->init_buzzer();
 }
 
 void

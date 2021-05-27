@@ -18,6 +18,9 @@ namespace simon
     void turn_off();
         
     private:
+        int frequency() { return this->m_frequency; }
+
+    private:
         buzzer( const buzzer& );
         buzzer& operator=( const buzzer& );
         

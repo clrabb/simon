@@ -17,11 +17,8 @@ panel_list::panel_list()
 
     this->init_panels();
 
-    // Hack
-    // CRABB
-    // Doesn't belong here.  Belons in the panel list state
-    //
-    this->activation_token( new active_panel_token( 300 ) );
+    this->normal_activation_token( new active_panel_token( NORMAL_PANEL_LIFESPAN ) );
+    this->lightshow_activation_token( new active_panel_token( LIGHTSHOW_PANEL_LIFESPAN ) );
 }
 
 void
@@ -47,26 +44,25 @@ panel_list::random_lightshow()
 {
     unsigned long start_time = millis();
 
+    randomSeed( analogRead( 0 ) );
 
-    time_t t;
-    srand( (unsigned) time( &t ) );
+
+    
 
     for ( ;; )
     {
         unsigned long now               = millis();
         unsigned long mills_since_start = now - start_time;
 
-        // HACK
-        // crabb
-        // magic number
-        if ( mills_since_start > 5000 )
+
+        if ( mills_since_start > LIGHTSHOW_DURATION )
             break;
 
-        abstract_activation_token* token = this->activation_token();
+        abstract_activation_token* token = this->lightshow_activation_token();
         if ( token->is_not_owned() )
         {
-            int rand_idx = rand() % NUM_PANELS;
-            this->activate_panel( rand_idx );
+            int rand_idx = random( NUM_PANELS );
+            this->activate_panel( rand_idx, token );
         }
 
         this->tick();      
@@ -74,10 +70,10 @@ panel_list::random_lightshow()
 }
 
 void
-panel_list::activate_panel( const short panel_idx )
+panel_list::activate_panel( const short panel_idx, abstract_activation_token* token )
 {
     abstract_panel* panel = this->m_panels[ panel_idx ];
-    panel->activate( this->activation_token() );
+    panel->activate( token );
 }
 
 abstract_panel* 
