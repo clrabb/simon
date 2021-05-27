@@ -16,7 +16,12 @@ panel_list::panel_list()
     this->m_panels[ GREEN_IDX  ] = new green_button_panel();
 
     this->init_panels();
-    this->activation_token( new active_panel_token( 5000 ) );
+
+    // Hack
+    // CRABB
+    // Doesn't belong here.  Belons in the panel list state
+    //
+    this->activation_token( new active_panel_token( 300 ) );
 }
 
 void
@@ -40,21 +45,25 @@ panel_list::tick()
 void
 panel_list::random_lightshow()
 {
-    active_panel_token token( 5 ); // testing, replace the 5
-
     unsigned long start_time = millis();
-    unsigned long now        = millis();
+
 
     time_t t;
     srand( (unsigned) time( &t ) );
 
     for ( ;; )
     {
+        unsigned long now               = millis();
         unsigned long mills_since_start = now - start_time;
-        if ( mills_since_start > 10000 )
+
+        // HACK
+        // crabb
+        // magic number
+        if ( mills_since_start > 5000 )
             break;
 
-        if ( token.is_not_owned() )
+        abstract_activation_token* token = this->activation_token();
+        if ( token->is_not_owned() )
         {
             int rand_idx = rand() % NUM_PANELS;
             this->activate_panel( rand_idx );

@@ -53,6 +53,8 @@ abstract_panel::tick_from_inactive_token()
 void
 abstract_panel::evict_token()
 {
+    this->light()->turn_off();
+    this->buzzer()->turn_off();
     this->current_activation_token()->unset_owner();
     this->current_activation_token( this->inactive_token() );
 }
@@ -66,8 +68,6 @@ red_button_panel::red_button_panel()
 void
 red_button_panel::init_light()
 {
-    this->button( new simon::button( RED_BUTTON_PIN ) );
-
     simon::light* l = new simon::light();
     l->pixel_number( RED_PIXEL_NUM  );
     l->red_value(    RED_R_VALUE    );

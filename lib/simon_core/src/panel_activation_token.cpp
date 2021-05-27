@@ -40,10 +40,9 @@ abstract_activation_token::unset_owner()
 bool 
 active_panel_token::should_leave_panel()
 {
-    unsigned long now      = millis();
     unsigned long age      = this->age();
     unsigned long lifespan = this -> lifespan();
-    bool should_leave      = ( now - age ) > lifespan;
+    bool should_leave      = ( age > lifespan );
 
     return should_leave;
 }

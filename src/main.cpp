@@ -29,6 +29,7 @@ void init_singletons()
 void setup()
 {
     Serial.begin( 115200 );
+    
     init_singletons();
     neopixel& np = singleton_t< neopixel >::instance();
     np.begin();
