@@ -6,8 +6,8 @@ namespace simon { class button; }
 
 namespace simon
 {
-    
-    
+
+
     class button_state
     {
     protected:

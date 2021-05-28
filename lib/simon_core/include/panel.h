@@ -52,6 +52,7 @@ namespace simon
     
         virtual void init_light() = 0;
         virtual void init_buzzer() = 0;
+        virtual void init_button() = 0;
     
 
         void button( simon::button* b ) { this->m_button = b; }
@@ -88,6 +89,7 @@ namespace simon
     protected: 
         void init_light() override;
         void init_buzzer() override;
+        void init_button() override;
     
 
     private:
@@ -105,6 +107,7 @@ namespace simon
     protected:
         void init_light() override;
         void init_buzzer() override;
+        void init_button() override;
 
     private:
         blue_button_panel( const blue_button_panel& );
@@ -122,6 +125,7 @@ namespace simon
     protected:
         void init_light() override;
         void init_buzzer() override;
+        void init_button() override;
 
     private:
         green_button_panel( const green_button_panel& );
@@ -138,6 +142,7 @@ namespace simon
     protected:
         void init_light() override;
         void init_buzzer() override;
+        void init_button() override;
 
     private:
         yellow_button_panel( const yellow_button_panel& );

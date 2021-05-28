@@ -20,6 +20,7 @@ abstract_panel::init()
 {
     this->init_light();
     this->init_buzzer();
+    this->init_button();
 }
 
 void
@@ -33,6 +34,7 @@ void
 abstract_panel::tick()
 {
     this->current_activation_token()->tick();
+    this->button()->update();
 }
 
 void
@@ -58,6 +60,7 @@ abstract_panel::evict_token()
     this->current_activation_token( this->inactive_token() );
 }
 
+
 /* -------------------  RED PANEL --------------- */
 
 red_button_panel::red_button_panel()
@@ -75,6 +78,12 @@ red_button_panel::init_light()
     l->init_once();
 
     this->light( l );
+}
+
+void
+red_button_panel::init_button()
+{
+    this->button( new simon::button( RED_BUTTON_PIN ) );
 }
 
 
@@ -105,6 +114,12 @@ blue_button_panel::init_light()
 
     this->light( l );
 } 
+
+void
+blue_button_panel::init_button()
+{
+    this->button( new simon::button( BLUE_BUTTON_PIN ) );
+}
 
 void
 blue_button_panel::init_buzzer()
@@ -142,6 +157,12 @@ green_button_panel::init_buzzer()
     this->buzzer( b );
 }
 
+void
+green_button_panel::init_button()
+{
+    this->button( new simon::button( GREEN_BUTTON_PIN ) );
+}
+
 
 /* --------------- YELLOW PANEL ---------------- */
 
@@ -160,6 +181,12 @@ yellow_button_panel::init_light()
     l->init_once();
 
     this->light( l );
+}
+
+void
+yellow_button_panel::init_button()
+{
+    this->button( new simon::button( YELLOW_BUTTON_PIN ) );
 }
 
 void 
