@@ -5,10 +5,10 @@ namespace simon
 //r b g y
 {
     /* ------------- BUTTONS ---------------------- */
-    static const short RED_BUTTON_PIN    = 2;
+    static const short RED_BUTTON_PIN    = 5;
     static const short BLUE_BUTTON_PIN   = 3;
     static const short GREEN_BUTTON_PIN  = 4;
-    static const short YELLOW_BUTTON_PIN = 5;
+    static const short YELLOW_BUTTON_PIN = 2;
 
     /* ------------- PANEL ------------------------ */
     static const unsigned long NORMAL_PANEL_LIFESPAN    = 700;

@@ -41,6 +41,11 @@ namespace simon
         void turn_off_light();
         void turn_off_buzzer();
 
+        // testing
+        //
+        boolean is_active() { return this->current_activation_token()->is_active(); }
+        boolean is_pressed() { return this->button()->is_pressed(); }
+
     
     public:
         // dispatch from token

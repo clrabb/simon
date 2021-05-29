@@ -24,10 +24,16 @@ namespace simon
             virtual void tick() = 0;
             abstract_panel* owner();
             void owner( abstract_panel* a_panel );
-            bool is_owned() { return this->m_owner != nullptr; }
-            bool is_not_owned() { return !( this->is_owned() ); }
             void unset_owner();
             unsigned long owned_at_mills();
+
+            // Testing
+            //
+            bool is_owned() { return this->m_owner != nullptr; }
+            bool is_not_owned() { return !( this->is_owned() ); }
+            virtual bool is_active()   { return false; }
+            virtual bool is_inactive() { return false; }
+
 
         private:
             void owned_at_mills( unsigned long owned_at_mills );
@@ -40,6 +46,10 @@ namespace simon
             virtual ~inactive_panel_token(){}
 
             void tick() override {};
+
+            // Testing
+            //
+            virtual bool is_inactive() override { return true; }
 
         private:
             inactive_panel_token& operator=( const inactive_panel_token& );
@@ -58,12 +68,15 @@ namespace simon
             virtual ~active_panel_token(){}
             
             // Testing
-            bool should_leave_panel();
+            bool    should_leave_panel();
+            virtual bool is_active() { return true; }
 
             // Behavior
             //
             void tick() override;
             unsigned long age();
+
+
 
         private:
             

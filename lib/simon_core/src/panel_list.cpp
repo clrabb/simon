@@ -35,7 +35,12 @@ panel_list::tick()
 {
     for ( int i = 0; i < NUM_PANELS; ++i )
     {
-        ( this->panel_at_index( i ) )->tick();
+        abstract_panel* p = this->panel_at_index( i );
+        p->tick();
+        if ( p->is_pressed() )
+        {
+            p->activate( this->normal_activation_token() );
+        }
     }
 }
   

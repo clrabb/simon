@@ -33,7 +33,7 @@ abstract_panel::activate( abstract_activation_token* token )
 
 void
 abstract_panel::tick()
-{
+{   
     this->current_activation_token()->tick();
     this->button()->update();
 }
@@ -56,7 +56,7 @@ abstract_panel::tick_from_unpressed_button()
 void 
 abstract_panel::tick_from_pressed_button()
 {
-    
+
 }
 
 void
