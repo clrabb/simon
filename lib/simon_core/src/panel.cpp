@@ -3,6 +3,7 @@
 #include "button.h"
 #include "light.h"
 #include "panel_activation_token.h"
+#include "button.h"
 
 
 using namespace simon;
@@ -42,6 +43,20 @@ abstract_panel::tick_from_active_token()
 {
     this->light()->turn_on();
     this->buzzer()->turn_on();
+}
+
+void 
+abstract_panel::tick_from_unpressed_button()
+{
+    // Nothing to do.  If I'm already active the
+    // active_token will take care of the shut off
+    //
+}
+
+void 
+abstract_panel::tick_from_pressed_button()
+{
+    
 }
 
 void

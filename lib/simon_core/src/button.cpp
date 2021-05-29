@@ -1,6 +1,7 @@
 #include "button.h"
 #include "simon_types.h"
 #include "button_state.h"
+#include "panel.h"
 
 
 using namespace simon;
@@ -31,4 +32,10 @@ button::update()
 {
     this->current_state()->update( this );
     return;
+}
+
+void
+button::tick( simon::abstract_panel* a_panel )
+{
+    this->current_state()->tick( a_panel );
 }

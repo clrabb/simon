@@ -47,6 +47,8 @@ namespace simon
         //
         void tick_from_active_token();
         void tick_from_inactive_token();
+        void tick_from_unpressed_button();
+        void tick_from_pressed_button();
 
     protected:
     

@@ -7,6 +7,7 @@ namespace simon { class button; }
 namespace simon
 {
 
+    class abstract_panel;
 
     class button_state
     {
@@ -22,6 +23,7 @@ namespace simon
         virtual void reset_state() {}
         virtual bool is_unpressed() = 0;
         virtual bool is_pressed()   = 0;
+        virtual void tick( simon::abstract_panel* a_panel ) = 0;
         void update( simon::button* btn );
     
     private:
@@ -36,10 +38,11 @@ namespace simon
     public:
         button_state_unpressed() {}
     
-        virtual void button_pressed( simon::button* btn );
-        virtual void button_unpressed( simon::button* btn );
-        virtual bool is_unpressed() { return true;  }
-        virtual bool is_pressed()   { return false; }
+        virtual void button_pressed( simon::button* btn ) override;
+        virtual void button_unpressed( simon::button* btn ) override;
+        virtual bool is_unpressed() override { return true;  }
+        virtual bool is_pressed() override { return false; }
+        virtual void tick( simon::abstract_panel* a_panel ) override;
     };
     
     /* ------------ PRESSED ---------------- */
@@ -64,6 +67,7 @@ namespace simon
         virtual bool is_unpressed() { return false; }
         virtual bool is_pressed()   { return true;  }
         virtual void reset_state() override;
+        virtual void tick( simon::abstract_panel* a_panel ) override;
     
     private:
         button_state_pressed( button_state_pressed& );

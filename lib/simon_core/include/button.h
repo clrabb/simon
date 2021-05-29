@@ -5,6 +5,8 @@
 
 namespace simon
 {
+    class panel;
+
     class button
     {
     private:
@@ -19,6 +21,7 @@ namespace simon
         short pin() { return m_pin; }
     
         void update();
+        void tick( simon::abstract_panel* a_panel );
     
         button_state* current_state() { return m_current_state; }
         void current_state( button_state* state ) { state->reset_state(); m_current_state = state; }

@@ -2,6 +2,7 @@
 #include "button.h"
 #include "singleton_t.h"
 #include "simon_consts.h"
+#include "panel.h"
 #include <Arduino.h>
 
 using namespace simon;
@@ -53,6 +54,12 @@ button_state_unpressed::button_unpressed( simon::button* btn )
     return;
 }
 
+void
+button_state_unpressed::tick( simon::abstract_panel* a_panel )
+{
+    a_panel->tick_from_unpressed_button();
+}
+
 /* -------------------- PRESSED -------------------- */
 
 button_state_pressed::button_state_pressed()
@@ -91,4 +98,10 @@ button_state_pressed::button_pressed( simon::button* btn )
     // fix this
     
     return;
+}
+
+void
+button_state_pressed::tick( simon::abstract_panel* a_panel )
+{
+    a_panel->tick_from_pressed_button();
 }
